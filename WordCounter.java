@@ -18,7 +18,6 @@ public class WordCounter {
 
             if (stopword != null && word.equals(stopword)) {
                 foundStopword = true;
-                break;
             }
         }
 
@@ -49,8 +48,12 @@ public class WordCounter {
 
         try (Scanner fileScanner = new Scanner(file)) {
             while (fileScanner.hasNextLine()) {
-                content.append(fileScanner.nextLine()).append(" ");
+                content.append(fileScanner.nextLine());
+                if (fileScanner.hasNextLine()) {
+                    content.append(" ");
+                }
             }
+        }
         } catch (Exception e) {}
 
         if (content.length() == 0) {
